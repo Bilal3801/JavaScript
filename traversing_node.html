@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="myDiv">This is the class </div>
+    <button id="btn">Ok</button>
+    <div>
+        <p id="myPara" style="color: red;">This is the target</p>
+    </div>
+</body>
+</html>
+<script>
+    let div=document.getElementById("myDiv");
+    let btn=document.getElementById("btn");
+    function toogleList()
+    {
+        debugger;
+        div.classList.toggle("active")
+      
+        if(div.classList.contains("active"))
+    {
+        div.style.backgroundColor ="Yellow"
+    }
+    else 
+    {
+        div.style.backgroundColor="green"
+    }
+
+    }
+    btn.addEventListener("click",toogleList)
+    let myPara= document.getElementById("myPara");
+    myPara.setAttribute("style","color:blue;font-size:42px");
+    const text= {"name": "Bilal", "age": 32};
+    // const jsonParse = JSON.parse();
+    console.log(JSON.parse('{"name": "Bilal", "age": 32}'));
+</script>        

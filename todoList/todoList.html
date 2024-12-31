@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ToDo List</title>
+</head>
+<body>
+<h1>ToDo List</h1>
+<input type="text" id="taskInput" placeholder="Add a new task">
+<button id="addTaskBtn">Add Task</button>
+
+<!-- <input type="text" id="searchInput" placeholder="Search..."> -->
+<ul id="taskList">
+    <!-- Tasks will be displayed here -->
+</ul>
+
+<button id="clearCompletedBtn">Clear Completed</button>
+<button id="" onclick="clearTask()">Clear</button>
+
+</body>
+</html>
+<script>
+    let tasks = [];
+    const taskInput = document.getElementById("taskInput");
+    const addTaskBtn = document.getElementById("addTaskBtn");
+    const taskList = document.getElementById("taskList");
+    const clearCompletedBtn = document.getElementById("clearCompletedBtn");
+    function addTask() {
+            const taskText = taskInput.value.trim();
+            if (taskText !== "") {
+                tasks.push({ text: taskText});
+                taskInput.value = "";
+                displayTasks();
+            }
+        }
+        function clearCompletedTasks() {
+            tasks = tasks.filter(task => !task.completed);
+            displayTasks();
+        }
+        function displayTasks() {
+            taskList.innerHTML = "";
+            tasks.forEach((task, index) => {
+                const li = document.createElement("li");
+                li.innerHTML = `<input type="checkbox" id="task-${index}" ${task.completed ? "checked" : ""}>
+                    <label for="task-${index}">${task.text}</label>`;
+                li.querySelector("input").addEventListener("change", () => toggleTask(index));
+                taskList.appendChild(li);
+            });
+        }
+        function toggleTask(index) {
+            tasks[index].completed = !tasks[index].completed;
+            displayTasks();
+        }
+        function clearTask()
+        {
+            tasks=[];
+            displayTasks()
+        }
+        addTaskBtn.addEventListener("click", addTask);
+clearCompletedBtn.addEventListener("click", clearCompletedTasks);
+
+</script>
